@@ -1,5 +1,5 @@
 class Film:
-    instance = None
+    __instance = None
 
     def __init__(self, title="", director="", year=0, rating=0.0, marks=0):
         self.title = title
@@ -10,10 +10,12 @@ class Film:
 
     @staticmethod
     def get_instance():
-        if Film.instance is None:
-            Film.instance = Film()
-        return Film.instance
-
+        if not Film.__instance:
+            Film.__instance = Film()
+        return Film.__instance
+    @staticmethod
+    def __do_work():
+        pass
     def rate(self, rating):
         if rating < 1:
             rating = 1
@@ -29,7 +31,6 @@ class Film:
 
     def __str__(self):
         return f"Film(title='{self.title}', director='{self.director}', year={self.year}, rating={self.rating}, marks={self.marks})"
-
 
 if __name__ == "__main__":
     films = [Film() for _ in range(4)]
