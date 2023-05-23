@@ -1,21 +1,13 @@
-"""Film class"""
+"""Serial class"""
 from models.video import Video
 
-
-class Film(Video):
-    """Film class"""
-    instance = None
-
-    def __init__(self, title, director, year, marks):
+class Serial(Video):
+    """Serial class"""
+    def __init__(self, title, director, year, episods, seasons, marks):
         super().__init__(title, director, year)
+        self.episods = episods
+        self.seasons = seasons
         self.marks = marks
-
-    @staticmethod
-    def get_instance():
-        """Retunr intctace"""
-        if Film.instance is None:
-            Film.instance = Film("", "", 0, 0)
-        return Film.instance
 
     def rate(self, rating):
         """Rate mehthod"""
@@ -29,5 +21,7 @@ class Film(Video):
         """Return rating"""
         return float(rating) / self.marks
 
+
     def __str__(self):
-        return f"Film({self.title},{self.director},{self.year},{self.marks})"
+        return f"Serial({self.title},{self.director}, {self.year},\
+        {self.episods}, {self.seasons}, {self.marks})"
