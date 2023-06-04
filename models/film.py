@@ -4,7 +4,7 @@ from models.video import Video
 
 class Film(Video):
     """Film class"""
-    instance = None
+    __instance = None
 
     def __init__(self, title, director, year, marks):
         super().__init__(title, director, year)
@@ -13,9 +13,9 @@ class Film(Video):
     @staticmethod
     def get_instance():
         """Retunr intctace"""
-        if Film.instance is None:
-            Film.instance = Film("", "", 0, 0)
-        return Film.instance
+        if Film.__instance is None:
+            Film.__instance = Film("", "", 0, 0)
+        return Film.__instance
 
     def rate(self, rating):
         """Rate mehthod"""
@@ -24,10 +24,14 @@ class Film(Video):
         elif rating > 10:
             rating = 10
         self.marks += 1
+        return rating
 
     def get_current_rating(self, rating):
         """Return rating"""
         return float(rating) / self.marks
 
     def __str__(self):
+        return f"Film({self.title},{self.director},{self.year},{self.marks})"
+
+    def __repr__(self):
         return f"Film({self.title},{self.director},{self.year},{self.marks})"
