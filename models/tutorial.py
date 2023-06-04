@@ -12,7 +12,7 @@ class Tutorial(Video):
 
     def get_current_rating(self, rating):
         """Return rating"""
-        return self.like / self.viems
+        return (self.viems / self.like) * 10
 
     def __str__(self):
         return f"Tutorial({self.title},{self.director}, {self.year},\

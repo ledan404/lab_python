@@ -21,7 +21,7 @@ class Serial(Video):
 
     def get_current_rating(self, rating):
         """Return rating"""
-        return float(rating) / self.marks
+        return (rating / self.marks) * 10
 
     def __str__(self):
         return f"Serial({self.title},{self.director}, {self.year},\
