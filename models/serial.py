@@ -1,8 +1,10 @@
 """Serial class"""
 from models.video import Video
 
+
 class Serial(Video):
     """Serial class"""
+
     def __init__(self, title, director, year, episods, seasons, marks):
         super().__init__(title, director, year)
         self.episods = episods
@@ -21,7 +23,10 @@ class Serial(Video):
         """Return rating"""
         return float(rating) / self.marks
 
-
     def __str__(self):
+        return f"Serial({self.title},{self.director}, {self.year},\
+        {self.episods}, {self.seasons}, {self.marks})"
+
+    def __repr__(self):
         return f"Serial({self.title},{self.director}, {self.year},\
         {self.episods}, {self.seasons}, {self.marks})"

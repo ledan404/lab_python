@@ -22,4 +22,26 @@ class VideoManger:
 
     def find_videos_with_director(self, director):
         """Find video with same director"""
-        return [video for video in self.__videos if video.director == director]
+        all_any = {"any": any(video for video in self.__videos if video.director == director),
+                   "all": all(video for video in self.__videos if video.director == director),}
+        return all_any
+
+    def __len__(self):
+        return len(self.__videos)
+
+    def __getitem__(self, index):
+        return self.__videos[index]
+
+    def __iter__(self):
+        return iter(self.__videos)
+
+    def result_rating_method(self, reting):
+        """Return rating"""
+        return [video.get_current_rating(reting) for video in self.__videos]
+
+    def enumerate(self):
+        """Return enumerate"""
+        return enumerate(self.videos)
+
+    def __repr__(self):
+        return f"VideoManger({self.__videos})"
