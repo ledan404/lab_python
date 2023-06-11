@@ -13,7 +13,7 @@ class Clip(Video):
 
     def get_current_rating(self, rating):
         """Return rating"""
-        return self.like / self.viems
+        return (self.like / self.viems) * 10
 
     def __str__(self):
         return f"Clip({self.title},{self.director}, {self.year},\

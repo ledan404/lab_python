@@ -1,12 +1,15 @@
 """Film class"""
 from models.video import Video
+from exeptions.exeption_rating import ExeptionRating
+from decoratos.decorator import logged
 
 
 class Film(Video):
     """Film class"""
     __instance = None
+    rating = 0
 
-    def __init__(self, title, director, year, marks):
+    def __init__(self, title, director, year, marks,):
         super().__init__(title, director, year)
         self.marks = marks
 
@@ -17,18 +20,18 @@ class Film(Video):
             Film.__instance = Film("", "", 0, 0)
         return Film.__instance
 
+    @logged(ExeptionRating, "file")
     def rate(self, rating):
         """Rate mehthod"""
-        if rating < 1:
-            rating = 1
-        elif rating > 10:
-            rating = 10
+        self.rating += rating
         self.marks += 1
+        if rating > 10 or rating < 1:
+            raise ExeptionRating
         return rating
 
     def get_current_rating(self, rating):
         """Return rating"""
-        return float(rating) / self.marks
+        return (float(rating) / self.marks) * 10
 
     def __str__(self):
         return f"Film({self.title},{self.director},{self.year},{self.marks})"
